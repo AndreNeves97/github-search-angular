@@ -111,7 +111,12 @@ export class GithubSearchController {
   private buildRequest(): GithubSearchRequest {
     const filterState = this.filterState$.value;
     const viewState = this.viewState$.value;
+    const perPage = 9;
 
-    return new GithubSearchRequest(filterState.searchTerm, viewState.page);
+    return new GithubSearchRequest(
+      filterState.searchTerm,
+      viewState.page,
+      perPage
+    );
   }
 }
