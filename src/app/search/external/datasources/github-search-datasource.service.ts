@@ -7,7 +7,7 @@ import { GithubSearchDatasource } from '../../infra/datasources/github-search-da
 
 @Injectable()
 export class GithubSearchDatasourceService implements GithubSearchDatasource {
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   public fetchSearchResults(
     request: GithubSearchRequest
@@ -18,8 +18,6 @@ export class GithubSearchDatasourceService implements GithubSearchDatasource {
       per_page: request.perPage,
     };
 
-    console.log(params);
-
-    return of();
+    return this.apiService.get<GithubSearchResult[]>('search/users', params);
   }
 }
