@@ -40,7 +40,7 @@ describe('GithubSearchUsecase', () => {
     expect(usecase).toBeTruthy();
   });
 
-  it('#searchOnGithub should request search results from #SearchRepository (empty query)', (done: DoneFn) => {
+  it('#call should request search results from #SearchRepository (empty query)', (done: DoneFn) => {
     const searchRequest: GithubSearchRequest = {
       query: '',
       page: 1,
@@ -58,7 +58,7 @@ describe('GithubSearchUsecase', () => {
     });
   });
 
-  it('#searchOnGithub should request search results from #SearchRepository (not empty query)', (done: DoneFn) => {
+  it('#call should request search results from #SearchRepository (not empty query)', (done: DoneFn) => {
     const searchRequest: GithubSearchRequest = {
       query: 'AndreNeves97',
       page: 1,
@@ -80,6 +80,7 @@ describe('GithubSearchUsecase', () => {
       expect(result)
         .withContext('service returned stub value')
         .toEqual(returnValue);
+
       done();
     });
   });

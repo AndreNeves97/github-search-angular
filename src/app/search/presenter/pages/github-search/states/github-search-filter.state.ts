@@ -6,8 +6,6 @@ export class GithubSearchFilterState {
   }
 
   static default(): GithubSearchFilterState {
-    return {
-      searchTerm: '',
-    };
+    return new GithubSearchFilterState('');
   }
 }
