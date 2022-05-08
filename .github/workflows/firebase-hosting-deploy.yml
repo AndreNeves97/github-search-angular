@@ -13,6 +13,13 @@ jobs:
       - name: Run unit and integration tests with Karma
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
+      - name: Comment Test Coverage
+        uses: AthleticNet/comment-test-coverage@1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: coverage/scalio-challenge/coverage-summary.json
+          title: Karma Test Coverage
+
       - name: Run e2e tests with Cypress 
         uses: cypress-io/github-action@v2
         with:
@@ -29,9 +36,15 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GITHUB_SEARCH_F7F52 }}'
           channelId: live
           projectId: github-search-f7f52
-      - uses: actions/upload-artifact@v3
+      - name: Upload dist files
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist/scalio-challenge
           retention-days: 1
-
+      - name: Upload coverage result
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/scalio-challenge
+          retention-days: 1
