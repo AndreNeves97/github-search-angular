@@ -9,7 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install
-      - run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Run unit and integration tests with Karma
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Run e2e tests with Cypress 
+        uses: cypress-io/github-action@v2
+        with:
+          build: npm run build
+          start: npm start
+
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
