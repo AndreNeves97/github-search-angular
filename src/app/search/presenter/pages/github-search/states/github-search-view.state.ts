@@ -6,6 +6,6 @@ export class GithubSearchViewState {
   }
 
   public static default(): GithubSearchViewState {
-    return new GithubSearchViewState(1);
+    return new GithubSearchViewState(2);
   }
 }
