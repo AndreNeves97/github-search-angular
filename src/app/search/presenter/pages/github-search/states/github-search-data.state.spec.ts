@@ -3,7 +3,11 @@ import { GithubSearchDataState } from './github-search-data.state';
 
 describe('GithubSearchDataState', () => {
   it('should create an instance', () => {
-    const state = new GithubSearchDataState(false, false, []);
+    const state = new GithubSearchDataState(
+      false,
+      false,
+      GithubSearchResult.empty()
+    );
     expect(state).toBeTruthy();
   });
 
@@ -29,7 +33,7 @@ describe('GithubSearchDataState', () => {
   });
 
   it('should create an success state instance', () => {
-    const data: GithubSearchResult[] = [];
+    const data: GithubSearchResult = GithubSearchResult.empty();
     const state = GithubSearchDataState.success(data);
 
     expect(state).toEqual(

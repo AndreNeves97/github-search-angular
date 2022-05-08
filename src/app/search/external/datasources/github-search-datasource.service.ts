@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/core/external/api/api.service';
 import { GithubSearchRequest } from '../../domain/entities/github-search-request';
 import { GithubSearchResult } from '../../domain/entities/github-search-result';
@@ -11,13 +11,23 @@ export class GithubSearchDatasourceService implements GithubSearchDatasource {
 
   public fetchSearchResults(
     request: GithubSearchRequest
-  ): Observable<GithubSearchResult[]> {
+  ): Observable<GithubSearchResult> {
+    if (!request.query) {
+      return of(GithubSearchResult.empty());
+    }
+
     const params = {
       q: request.query,
       page: request.page,
       per_page: request.perPage,
     };
 
-    return this.apiService.get<GithubSearchResult[]>('search/users', params);
+    return this.apiService
+      .get<any>('search/users', params)
+      .pipe(
+        map(
+          (result) => new GithubSearchResult(result.items, result.total_count)
+        )
+      );
   }
 }

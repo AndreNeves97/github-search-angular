@@ -9,9 +9,7 @@ import { GithubSearchDatasource } from '../datasources/github-search-datasource.
 export class SearchRepositoryService implements SearchRepository {
   constructor(private githubSearchDatasource: GithubSearchDatasource) {}
 
-  searchOnGithub(
-    request: GithubSearchRequest
-  ): Observable<GithubSearchResult[]> {
+  searchOnGithub(request: GithubSearchRequest): Observable<GithubSearchResult> {
     return this.githubSearchDatasource.fetchSearchResults(request);
   }
 }

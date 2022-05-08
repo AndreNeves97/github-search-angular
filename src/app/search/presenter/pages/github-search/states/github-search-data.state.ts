@@ -3,20 +3,16 @@ import { GithubSearchResult } from 'src/app/search/domain/entities/github-search
 export class GithubSearchDataState {
   hasError: boolean;
   isLoading: boolean;
-  data!: GithubSearchResult[] | null;
+  data!: GithubSearchResult | null;
 
-  constructor(
-    hasError: boolean,
-    isLoading: boolean,
-    data: GithubSearchResult[]
-  ) {
+  constructor(hasError: boolean, isLoading: boolean, data: GithubSearchResult) {
     this.hasError = hasError;
     this.isLoading = isLoading;
     this.data = data;
   }
 
   public static loading(
-    data: GithubSearchResult[] | null = null
+    data: GithubSearchResult | null = null
   ): GithubSearchDataState {
     return {
       hasError: false,
@@ -26,7 +22,7 @@ export class GithubSearchDataState {
   }
 
   public static error(
-    data: GithubSearchResult[] | null = null
+    data: GithubSearchResult | null = null
   ): GithubSearchDataState {
     return {
       hasError: true,
@@ -35,7 +31,7 @@ export class GithubSearchDataState {
     };
   }
 
-  public static success(data: GithubSearchResult[]): GithubSearchDataState {
+  public static success(data: GithubSearchResult): GithubSearchDataState {
     return {
       hasError: false,
       isLoading: false,

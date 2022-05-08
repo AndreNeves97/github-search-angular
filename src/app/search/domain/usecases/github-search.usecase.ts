@@ -8,7 +8,7 @@ import { SearchRepository } from '../repositories/search-repository.interface';
 export class GithubSearchUsecase {
   constructor(private searchRepository: SearchRepository) {}
 
-  public call(request: GithubSearchRequest): Observable<GithubSearchResult[]> {
+  public call(request: GithubSearchRequest): Observable<GithubSearchResult> {
     return this.searchRepository.searchOnGithub(request);
   }
 }

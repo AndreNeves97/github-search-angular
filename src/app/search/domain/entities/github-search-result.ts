@@ -1,11 +1,19 @@
-export class GithubSearchResult {
-  avatarUrl: string;
-  login: string;
-  type: string;
+import { GithubUser } from './github-user';
 
-  constructor(avatarUrl: string, login: string, type: string) {
-    this.avatarUrl = avatarUrl;
-    this.login = login;
-    this.type = type;
+export class GithubSearchResult {
+  items: GithubUser[];
+  totalCount: number;
+
+  constructor(items: GithubUser[], totalCount: number) {
+    this.items = items;
+    this.totalCount = totalCount;
+  }
+
+  public static fromList(items: GithubUser[]) {
+    return new GithubSearchResult(items, items.length);
+  }
+
+  public static empty(): GithubSearchResult {
+    return GithubSearchResult.fromList([]);
   }
 }

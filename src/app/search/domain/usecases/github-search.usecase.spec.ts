@@ -47,7 +47,7 @@ describe('GithubSearchUsecase', () => {
       perPage: 9,
     };
 
-    const returnValue: GithubSearchResult[] = [];
+    const returnValue: GithubSearchResult = GithubSearchResult.empty();
 
     const stubValue = of(returnValue);
     searchRepositorySpy.searchOnGithub.and.returnValue(stubValue);
@@ -65,13 +65,13 @@ describe('GithubSearchUsecase', () => {
       perPage: 9,
     };
 
-    const returnValue: GithubSearchResult[] = [
+    const returnValue: GithubSearchResult = GithubSearchResult.fromList([
       {
         avatarUrl: 'https://avatars.githubusercontent.com/u/16177771?v=4',
         login: 'AndreNeves97',
         type: 'User',
       },
-    ];
+    ]);
 
     const stubValue = of(returnValue);
     searchRepositorySpy.searchOnGithub.and.returnValue(stubValue);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, debounceTime, Subject } from 'rxjs';
+import { BehaviorSubject, debounceTime, skip, Subject } from 'rxjs';
 import { GithubSearchRequest } from 'src/app/search/domain/entities/github-search-request';
 import { GithubSearchResult } from 'src/app/search/domain/entities/github-search-result';
 import { GithubSearchUsecase } from 'src/app/search/domain/usecases/github-search.usecase';
@@ -83,13 +83,13 @@ export class GithubSearchController {
   }
 
   private listenFilterState() {
-    this.filterState$.subscribe(() => {
+    this.filterState$.pipe(skip(1)).subscribe(() => {
       this.load();
     });
   }
 
   private listenViewState() {
-    this.viewState$.subscribe(() => {
+    this.viewState$.pipe(skip(1)).subscribe(() => {
       this.load();
     });
   }
@@ -104,7 +104,7 @@ export class GithubSearchController {
     this.dataState$.next(GithubSearchDataState.error(data));
   }
 
-  private setData(data: GithubSearchResult[]) {
+  private setData(data: GithubSearchResult) {
     this.dataState$.next(GithubSearchDataState.success(data));
   }
 

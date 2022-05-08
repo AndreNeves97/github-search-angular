@@ -5,5 +5,5 @@ import { GithubSearchResult } from '../../domain/entities/github-search-result';
 export abstract class GithubSearchDatasource {
   public abstract fetchSearchResults(
     request: GithubSearchRequest
-  ): Observable<GithubSearchResult[]>;
+  ): Observable<GithubSearchResult>;
 }
