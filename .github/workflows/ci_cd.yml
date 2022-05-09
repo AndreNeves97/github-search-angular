@@ -1,9 +1,9 @@
 name: Continuous integration and continuos deployment
 on:
-  - push:
+  push:
     branches:
       - master
-  - pull_request
+  pull_request:
 
 jobs:
   build_and_deploy:
