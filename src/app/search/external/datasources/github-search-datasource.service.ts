@@ -18,7 +18,7 @@ export class GithubSearchDatasourceService implements GithubSearchDatasource {
 
     const params = {
       q: request.query,
-      page: request.page,
+      page: request.page + 1,
       per_page: request.perPage,
     };
 

@@ -25,7 +25,7 @@ export class GithubSearchController {
     );
 
     this.dataState$ = new BehaviorSubject<GithubSearchDataState>(
-      GithubSearchDataState.loading()
+      GithubSearchDataState.empty()
     );
 
     this.loadRequest$ = new Subject<void>();
