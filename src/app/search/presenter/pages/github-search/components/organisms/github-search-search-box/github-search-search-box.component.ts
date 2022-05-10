@@ -14,6 +14,11 @@ export class GithubSearchSearchBoxComponent implements OnInit {
   ngOnInit(): void {}
 
   submit(): void {
+    this.controller.setPage(0);
     this.controller.setSearchTerm(this.searchTerm);
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
   }
 }

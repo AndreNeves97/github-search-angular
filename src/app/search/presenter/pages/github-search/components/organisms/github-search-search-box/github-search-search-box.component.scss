@@ -1,0 +1,20 @@
+$search-box-heigth: 70.86px;
+$form-field-bottom-padding: 1.34375em;
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-form-field {
+    width: 100%;
+    height: $search-box-heigth;
+    margin-right: 1em;
+  }
+
+  button.submit-button {
+    width: 100px;
+    height: calc($search-box-heigth - $form-field-bottom-padding);
+    margin-bottom: $form-field-bottom-padding;
+  }
+}
