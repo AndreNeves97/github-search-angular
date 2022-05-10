@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatInput } from '@angular/material/input';
 import { GithubSearchController } from '../../../github-search.controller';
 
 @Component({
@@ -7,11 +8,17 @@ import { GithubSearchController } from '../../../github-search.controller';
   styleUrls: ['./github-search-search-box.component.scss'],
 })
 export class GithubSearchSearchBoxComponent implements OnInit {
+  @ViewChild(MatInput) searchInput!: MatInput;
+
   searchTerm: string = '';
 
   constructor(private controller: GithubSearchController) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.controller.focusSearchInput$.subscribe(() => {
+      this.searchInput.focus();
+    });
+  }
 
   submit(): void {
     this.controller.setPage(0);

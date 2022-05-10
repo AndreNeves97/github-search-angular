@@ -12,6 +12,7 @@ export class GithubSearchController {
   public filterState$: BehaviorSubject<GithubSearchFilterState>;
   public viewState$: BehaviorSubject<GithubSearchViewState>;
   public dataState$: BehaviorSubject<GithubSearchDataState>;
+  public focusSearchInput$: Subject<void>;
 
   loadRequest$: Subject<void>;
 
@@ -27,6 +28,8 @@ export class GithubSearchController {
     this.dataState$ = new BehaviorSubject<GithubSearchDataState>(
       GithubSearchDataState.empty()
     );
+
+    this.focusSearchInput$ = new Subject();
 
     this.loadRequest$ = new Subject<void>();
 
