@@ -59,7 +59,8 @@ describe('GithubSearchDatasourceService', () => {
     const returnValueFromApi = {
       items: [
         {
-          avatarUrl: 'https://avatars.githubusercontent.com/u/16177771?v=4',
+          avatar_url: 'https://avatars.githubusercontent.com/u/16177771?v=4',
+          html_url: 'https://github.com/AndreNeves97',
           login: 'AndreNeves97',
           type: 'User',
         },
@@ -67,10 +68,8 @@ describe('GithubSearchDatasourceService', () => {
       total_count: 1,
     };
 
-    const returnValueFromService: GithubSearchResult = new GithubSearchResult(
-      returnValueFromApi.items,
-      returnValueFromApi.total_count
-    );
+    const returnValueFromService: GithubSearchResult =
+      GithubSearchResult.fromApiResponse(returnValueFromApi);
 
     const stubValue = of(returnValueFromApi);
     apiServiceSpy.get.and.returnValue(stubValue);

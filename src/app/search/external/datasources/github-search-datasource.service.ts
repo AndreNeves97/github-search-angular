@@ -24,10 +24,6 @@ export class GithubSearchDatasourceService implements GithubSearchDatasource {
 
     return this.apiService
       .get<any>('search/users', params)
-      .pipe(
-        map(
-          (result) => new GithubSearchResult(result.items, result.total_count)
-        )
-      );
+      .pipe(map((response) => GithubSearchResult.fromApiResponse(response)));
   }
 }
