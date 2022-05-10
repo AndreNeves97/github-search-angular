@@ -51,6 +51,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: map-get($scalio-challenge-primary, 200);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
