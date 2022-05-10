@@ -13,7 +13,9 @@ import { GithubSearchUsecase } from './domain/usecases/github-search.usecase';
 import { GithubSearchDatasource } from './infra/datasources/github-search-datasource.interface';
 import { GithubSearchDatasourceService } from './external/datasources/github-search-datasource.service';
 
+import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -43,11 +45,13 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     SearchRoutingModule,
     MatButtonModule,
+    MatCardModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
     MatIconModule,
+    MatRippleModule,
   ],
 })
 export class SearchModule {}

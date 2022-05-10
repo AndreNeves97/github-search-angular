@@ -1,5 +1,12 @@
+.table-container {
+  &.hidden {
+    display: none;
+  }
+}
+
 .table-wrapper {
   overflow: auto;
+  border-radius: 4px 4px 0 0;
 
   table {
     width: 100%;
@@ -13,5 +20,23 @@
         padding: 8px 0;
       }
     }
+  }
+}
+
+mat-paginator {
+  border-radius: 0 0 4px 4px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    max-width: 220px;
   }
 }

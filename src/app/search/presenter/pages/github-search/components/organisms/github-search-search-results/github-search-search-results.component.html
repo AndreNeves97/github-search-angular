@@ -1,4 +1,26 @@
-<div class="table-container mat-elevation-z8">
+<mat-card
+  matRipple
+  class="info-card mat-elevation-z6"
+  *ngIf="shouldShowInfoCard"
+  (click)="onInfoCardClick()"
+>
+  <ng-container *ngIf="shouldShowIntroduction">
+    <h2>Search a GitHub User!</h2>
+    <h4>Click here to start.</h4>
+    <img src="assets/img/people-search.svg" alt="" />
+  </ng-container>
+
+  <ng-container *ngIf="!shouldShowIntroduction && !hasData">
+    <h2>No user found on GitHub Search.</h2>
+    <h4>Click here to search another user.</h4>
+    <img src="assets/img/no-data.svg" alt="" />
+  </ng-container>
+</mat-card>
+
+<div
+  class="table-container mat-elevation-z8"
+  [class.hidden]="shouldShowInfoCard"
+>
   <div class="table-wrapper">
     <table mat-table matSort aria-label="Elements">
       <ng-container matColumnDef="avatarImg">

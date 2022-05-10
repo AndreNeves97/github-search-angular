@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { firstValueFrom, timer } from 'rxjs';
+import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
 import { GithubUser } from 'src/app/search/domain/entities/github-user';
 import { GithubSearchController } from '../../../github-search.controller';
 import { GithubSearchSearchResultsTableDataSource } from './github-search-search-results-table-datasource';
@@ -12,7 +12,11 @@ import { GithubSearchSearchResultsTableDataSource } from './github-search-search
   templateUrl: './github-search-search-results.component.html',
   styleUrls: ['./github-search-search-results.component.scss'],
 })
-export class GithubSearchSearchResultsComponent implements AfterViewInit {
+export class GithubSearchSearchResultsComponent
+  implements AfterViewInit, OnDestroy
+{
+  private destroy$ = new Subject<void>();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<GithubUser>;
@@ -20,8 +24,13 @@ export class GithubSearchSearchResultsComponent implements AfterViewInit {
 
   displayedColumns = ['avatarImg', 'login', 'type', 'htmlUrl'];
 
+  shouldShowInfoCard: boolean = true;
+  shouldShowIntroduction: boolean = true;
+  hasData: boolean = false;
+
   constructor(public controller: GithubSearchController) {
     this.dataSource = new GithubSearchSearchResultsTableDataSource(controller);
+    this.listenToStatesChanges();
   }
 
   async ngAfterViewInit(): Promise<void> {
@@ -29,6 +38,36 @@ export class GithubSearchSearchResultsComponent implements AfterViewInit {
 
     this.setDefaultSorting();
     this.connnectDataSource();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  listenToStatesChanges() {
+    this.controller.dataState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((dataState) => {
+        const filterState = this.controller.filterState$.value;
+
+        if (dataState.isLoading) {
+          return;
+        }
+
+        if (filterState.searchTerm !== '') {
+          this.shouldShowIntroduction = false;
+        }
+
+        if (dataState.data.items.length === 0) {
+          this.shouldShowInfoCard = true;
+          this.hasData = false;
+          return;
+        }
+
+        this.shouldShowInfoCard = false;
+        this.hasData = true;
+      });
   }
 
   setDefaultSorting() {
@@ -40,5 +79,9 @@ export class GithubSearchSearchResultsComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
 
     this.table.dataSource = this.dataSource;
+  }
+
+  onInfoCardClick() {
+    this.controller.focusSearchInput$.next();
   }
 }
