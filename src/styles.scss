@@ -50,3 +50,53 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: map-get(
+    $scalio-challenge-theme,
+    "color",
+    "background",
+    "background"
+  );
+}
+
+::-webkit-scrollbar-thumb {
+  background: map-get(
+    $scalio-challenge-theme,
+    "color",
+    "background",
+    "app-bar"
+  );
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: map-get($scalio-challenge-theme, "color", "background", "card");
+}
+
+.table-container {
+  ::-webkit-scrollbar-track {
+    background: map-get($scalio-challenge-theme, "color", "background", "card");
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: map-get(
+      $scalio-challenge-theme,
+      "color",
+      "background",
+      "background"
+    );
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: map-get(
+      $scalio-challenge-theme,
+      "color",
+      "background",
+      "app-bar"
+    );
+  }
+}
