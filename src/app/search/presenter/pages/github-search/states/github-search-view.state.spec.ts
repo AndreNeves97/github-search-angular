@@ -21,7 +21,7 @@ describe('GithubSearchViewState', () => {
 
     expect(state).toEqual(
       jasmine.objectContaining({
-        page: 1,
+        page: 0,
       })
     );
   });
