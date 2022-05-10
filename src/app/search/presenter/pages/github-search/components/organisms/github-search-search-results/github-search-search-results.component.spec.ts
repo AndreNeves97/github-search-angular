@@ -1,39 +1,51 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GithubSearchController } from '../../../github-search.controller';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 import { GithubSearchSearchResultsComponent } from './github-search-search-results.component';
+import { GithubSearchController } from '../../../github-search.controller';
+import { GithubSearchUsecase } from 'src/app/search/domain/usecases/github-search.usecase';
 
 describe('GithubSearchSearchResultsComponent', () => {
   let component: GithubSearchSearchResultsComponent;
   let fixture: ComponentFixture<GithubSearchSearchResultsComponent>;
 
-  let githubSearchControllerSpy: jasmine.SpyObj<GithubSearchController>;
+  let githubSearchUsecaseSpy: jasmine.SpyObj<GithubSearchUsecase>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('GithubSearchController', ['setPage']);
+    const spy = jasmine.createSpyObj('GithubSearchUsecase', ['call']);
 
     await TestBed.configureTestingModule({
       declarations: [GithubSearchSearchResultsComponent],
       providers: [
+        GithubSearchController,
         {
-          provide: GithubSearchController,
+          provide: GithubSearchUsecase,
           useValue: spy,
         },
       ],
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+      ],
     }).compileComponents();
-
-    githubSearchControllerSpy = TestBed.inject(
-      GithubSearchController
-    ) as jasmine.SpyObj<GithubSearchController>;
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GithubSearchSearchResultsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    githubSearchUsecaseSpy = TestBed.inject(
+      GithubSearchUsecase
+    ) as jasmine.SpyObj<GithubSearchUsecase>;
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

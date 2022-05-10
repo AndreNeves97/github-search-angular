@@ -13,6 +13,13 @@ import { GithubSearchUsecase } from './domain/usecases/github-search.usecase';
 import { GithubSearchDatasource } from './infra/datasources/github-search-datasource.interface';
 import { GithubSearchDatasourceService } from './external/datasources/github-search-datasource.service';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     GithubSearchPageComponent,
@@ -31,6 +38,16 @@ import { GithubSearchDatasourceService } from './external/datasources/github-sea
       useClass: GithubSearchDatasourceService,
     },
   ],
-  imports: [CommonModule, FormsModule, SearchRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SearchRoutingModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatIconModule,
+  ],
 })
 export class SearchModule {}

@@ -1,5 +1,47 @@
-<p>github-search-search-results works!</p>
+<div class="table-container mat-elevation-z8">
+  <div class="table-wrapper">
+    <table mat-table matSort aria-label="Elements">
+      <ng-container matColumnDef="avatarImg">
+        <th mat-header-cell *matHeaderCellDef>Avatar</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="avatar-wrapper">
+            <a [href]="row.avatarUrl" target="_blank">
+              <img class="avatar" [src]="row.avatarUrl" [alt]="row.login" />
+            </a>
+          </div>
+        </td>
+      </ng-container>
 
-<button *ngFor="let i of [1, 2, 3, 4, 5]" (click)="changePage(i)">
-  {{ i }}
-</button>
+      <ng-container matColumnDef="login">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Login</th>
+        <td mat-cell *matCellDef="let row">{{ row.login }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="htmlUrl">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profile URL</th>
+        <td mat-cell *matCellDef="let row">
+          <a [href]="row.htmlUrl" target="_blank">
+            {{ row.htmlUrl }}
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    #paginator
+    [length]="controller.dataState$.value.data.totalCount"
+    [pageIndex]="controller.viewState$.value.page"
+    [pageSize]="9"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
