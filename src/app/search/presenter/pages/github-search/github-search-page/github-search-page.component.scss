@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@import "/src/theme.scss";
+
+app-github-search-search-box {
+  display: block;
+  position: sticky;
+  top: 64px;
+
+  padding: 0 14px;
+  padding-top: 24px;
+  z-index: 100;
+
+  background: map-get($theme, "color", "background", "background");
+
+  @media (max-width: 599px) {
+    top: 56px;
+  }
+}
+
+app-github-search-search-results {
+  display: block;
+
+  margin: 0 14px;
+  margin-bottom: 24px;
+}
