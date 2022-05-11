@@ -100,6 +100,13 @@ export class GithubSearchSearchResultsComponent
   }
 
   onInfoCardClick() {
+    const dataState = this.controller.dataState$.value;
+
+    if (dataState.hasError) {
+      this.controller.load();
+      return;
+    }
+
     this.controller.focusSearchInput$.next();
   }
 }
