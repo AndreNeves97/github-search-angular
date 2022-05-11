@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
 import { GithubUser } from 'src/app/search/domain/entities/github-user';
 import { GithubSearchController } from '../../../github-search.controller';
+import { InfoMessage } from '../../../models/info-message';
 import { GithubSearchSearchResultsTableDataSource } from './github-search-search-results-table-datasource';
 
 @Component({
@@ -24,9 +25,8 @@ export class GithubSearchSearchResultsComponent
 
   displayedColumns = ['avatarImg', 'login', 'type', 'htmlUrl'];
 
-  shouldShowInfoCard: boolean = true;
   shouldShowIntroduction: boolean = true;
-  hasData: boolean = false;
+  infoMessage!: InfoMessage | null;
 
   constructor(public controller: GithubSearchController) {
     this.dataSource = new GithubSearchSearchResultsTableDataSource(controller);

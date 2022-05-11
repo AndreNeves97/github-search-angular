@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, debounceTime, skip, Subject } from 'rxjs';
+import { AppController } from 'src/app/app.controller';
 import { GithubSearchRequest } from 'src/app/search/domain/entities/github-search-request';
 import { GithubSearchResult } from 'src/app/search/domain/entities/github-search-result';
 import { GithubSearchUsecase } from 'src/app/search/domain/usecases/github-search.usecase';
@@ -16,7 +17,10 @@ export class GithubSearchController {
 
   loadRequest$: Subject<void>;
 
-  constructor(private githubSearchUsecase: GithubSearchUsecase) {
+  constructor(
+    private githubSearchUsecase: GithubSearchUsecase,
+    private appController: AppController
+  ) {
     this.filterState$ = new BehaviorSubject<GithubSearchFilterState>(
       GithubSearchFilterState.default()
     );
@@ -64,6 +68,7 @@ export class GithubSearchController {
 
   public load() {
     this.loadRequest$.next();
+    this.appController.scrollToTop$.next();
   }
 
   private listenStates() {
