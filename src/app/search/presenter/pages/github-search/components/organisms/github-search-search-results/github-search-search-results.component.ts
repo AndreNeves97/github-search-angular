@@ -25,7 +25,6 @@ export class GithubSearchSearchResultsComponent
 
   displayedColumns = ['avatarImg', 'login', 'type', 'htmlUrl'];
 
-  shouldShowIntroduction: boolean = true;
   infoMessage!: InfoMessage | null;
 
   constructor(public controller: GithubSearchController) {
@@ -52,15 +51,10 @@ export class GithubSearchSearchResultsComponent
   }
 
   onDataStateChange() {
-    const filterState = this.controller.filterState$.value;
     const dataState = this.controller.dataState$.value;
 
     if (dataState.isLoading) {
       return;
-    }
-
-    if (filterState.searchTerm !== '') {
-      this.shouldShowIntroduction = false;
     }
 
     this.setInfoCardMessage();
@@ -71,9 +65,10 @@ export class GithubSearchSearchResultsComponent
   }
 
   buildInfoCardMessage(): InfoMessage | null {
+    const filterState = this.controller.filterState$.value;
     const dataState = this.controller.dataState$.value;
 
-    if (this.shouldShowIntroduction) {
+    if (filterState.searchTerm === '') {
       return InfoMessage.introduction();
     }
 
