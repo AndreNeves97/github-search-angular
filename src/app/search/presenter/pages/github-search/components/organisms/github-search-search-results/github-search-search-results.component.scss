@@ -4,6 +4,15 @@
 
 $img-size: 36px;
 
+.progress-bar-wrapper {
+  height: 4px;
+  width: 100%;
+
+  mat-progress-bar {
+    width: 100%;
+  }
+}
+
 .table-container {
   &.hidden {
     display: none;
@@ -25,6 +34,7 @@ $img-size: 36px;
 }
 
 .table-wrapper {
+  position: relative;
   overflow: auto;
   border-radius: 4px 4px 0 0;
 

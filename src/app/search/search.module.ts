@@ -21,6 +21,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InfoCardComponent } from './presenter/pages/github-search/components/molecules/info-card/info-card.component';
 
 @NgModule({
@@ -53,6 +55,8 @@ import { InfoCardComponent } from './presenter/pages/github-search/components/mo
     MatSortModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatRippleModule,
   ],
 })
