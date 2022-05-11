@@ -1,46 +1,8 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-// Plus imports for other components in your app.
+@import "./theme.scss";
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$scalio-challenge-primary: mat.define-palette(mat.$indigo-palette, 400);
-
-$scalio-challenge-accent: mat.define-palette(
-  mat.$pink-palette,
-  A200,
-  A100,
-  A400
-);
-
-// The warn palette is optional (defaults to red).
-$scalio-challenge-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$scalio-challenge-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: $scalio-challenge-primary,
-      accent: $scalio-challenge-accent,
-      warn: $scalio-challenge-warn,
-    ),
-  )
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($scalio-challenge-theme);
-
-/* You can add global styles to this file, and also import other style files */
+@include mat.all-component-themes($theme);
 
 html,
 body {
@@ -49,11 +11,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: map-get($theme, "color", "background", "background");
 }
 
 a {
   text-decoration: none;
-  color: map-get($scalio-challenge-primary, 200);
+  color: map-get($primary, 200);
 }
 
 ::-webkit-scrollbar {
@@ -61,47 +24,13 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: map-get(
-    $scalio-challenge-theme,
-    "color",
-    "background",
-    "background"
-  );
+  background: map-get($theme, "color", "background", "background");
 }
 
 ::-webkit-scrollbar-thumb {
-  background: map-get(
-    $scalio-challenge-theme,
-    "color",
-    "background",
-    "app-bar"
-  );
+  background: map-get($theme, "color", "background", "app-bar");
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: map-get($scalio-challenge-theme, "color", "background", "card");
-}
-
-.table-container {
-  ::-webkit-scrollbar-track {
-    background: map-get($scalio-challenge-theme, "color", "background", "card");
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: map-get(
-      $scalio-challenge-theme,
-      "color",
-      "background",
-      "background"
-    );
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: map-get(
-      $scalio-challenge-theme,
-      "color",
-      "background",
-      "app-bar"
-    );
-  }
+  background: map-get($theme, "color", "background", "card");
 }
