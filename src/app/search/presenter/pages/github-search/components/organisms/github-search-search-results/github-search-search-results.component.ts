@@ -48,26 +48,44 @@ export class GithubSearchSearchResultsComponent
   listenToStatesChanges() {
     this.controller.dataState$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((dataState) => {
-        const filterState = this.controller.filterState$.value;
+      .subscribe(this.onDataStateChange.bind(this));
+  }
 
-        if (dataState.isLoading) {
-          return;
-        }
+  onDataStateChange() {
+    const filterState = this.controller.filterState$.value;
+    const dataState = this.controller.dataState$.value;
 
-        if (filterState.searchTerm !== '') {
-          this.shouldShowIntroduction = false;
-        }
+    if (dataState.isLoading) {
+      return;
+    }
 
-        if (dataState.data.items.length === 0) {
-          this.shouldShowInfoCard = true;
-          this.hasData = false;
-          return;
-        }
+    if (filterState.searchTerm !== '') {
+      this.shouldShowIntroduction = false;
+    }
 
-        this.shouldShowInfoCard = false;
-        this.hasData = true;
-      });
+    this.setInfoCardMessage();
+  }
+
+  setInfoCardMessage() {
+    this.infoMessage = this.buildInfoCardMessage();
+  }
+
+  buildInfoCardMessage(): InfoMessage | null {
+    const dataState = this.controller.dataState$.value;
+
+    if (this.shouldShowIntroduction) {
+      return InfoMessage.introduction();
+    }
+
+    if (dataState.hasError) {
+      return InfoMessage.searchError();
+    }
+
+    if (dataState.data.items.length === 0) {
+      return InfoMessage.noSearchResults();
+    }
+
+    return null;
   }
 
   setDefaultSorting() {
