@@ -1,7 +1,7 @@
 <div class="progress-bar-wrapper">
   <mat-progress-bar
     mode="indeterminate"
-    *ngIf="controller.dataState$.value.isLoading"
+    *ngIf="isLoading$ | async"
   ></mat-progress-bar>
 </div>
 
@@ -50,8 +50,8 @@
 
   <mat-paginator
     #paginator
-    [length]="controller.dataState$.value.data.totalCount"
-    [pageIndex]="controller.viewState$.value.page"
+    [length]="totalCount$ | async"
+    [pageIndex]="pageIndex$ | async"
     [pageSize]="9"
     aria-label="Select page"
   >

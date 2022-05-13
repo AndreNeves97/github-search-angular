@@ -2,7 +2,14 @@ import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
+import {
+  firstValueFrom,
+  map,
+  Observable,
+  Subject,
+  takeUntil,
+  timer,
+} from 'rxjs';
 import { GithubUser } from 'src/app/search/domain/entities/github-user';
 import { GithubSearchController } from '../../../github-search.controller';
 import { InfoMessage } from '../../../models/info-message';
@@ -28,9 +35,14 @@ export class GithubSearchSearchResultsComponent
 
   infoMessage!: InfoMessage | undefined;
 
+  isLoading$!: Observable<boolean>;
+  totalCount$!: Observable<number>;
+  pageIndex$!: Observable<number>;
+
   constructor(public controller: GithubSearchController) {
     this.dataSource = new GithubSearchSearchResultsTableDataSource(controller);
     this.listenToStatesChanges();
+    this.createHelperObservables();
   }
 
   async ngAfterViewInit(): Promise<void> {
@@ -49,6 +61,20 @@ export class GithubSearchSearchResultsComponent
     this.controller.dataState$
       .pipe(takeUntil(this.destroy$))
       .subscribe(this.onDataStateChange.bind(this));
+  }
+
+  createHelperObservables() {
+    this.isLoading$ = this.controller.dataState$.pipe(
+      map((dataState) => dataState.isLoading)
+    );
+
+    this.totalCount$ = this.controller.dataState$.pipe(
+      map((dataState) => dataState.data.totalCount)
+    );
+
+    this.pageIndex$ = this.controller.viewState$.pipe(
+      map((viewState) => viewState.page)
+    );
   }
 
   onDataStateChange() {
