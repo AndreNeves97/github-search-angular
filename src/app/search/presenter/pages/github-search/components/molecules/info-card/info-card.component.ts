@@ -8,7 +8,7 @@ import { InfoMessage } from '../../../models/info-message';
 })
 export class InfoCardComponent implements OnInit {
   @Input()
-  infoMessage!: InfoMessage | null;
+  infoMessage!: InfoMessage | undefined;
 
   constructor() {}
 

@@ -6,6 +6,7 @@ import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
 import { GithubUser } from 'src/app/search/domain/entities/github-user';
 import { GithubSearchController } from '../../../github-search.controller';
 import { InfoMessage } from '../../../models/info-message';
+import { InfoMessageType } from '../../../models/info-message-type';
 import { GithubSearchSearchResultsTableDataSource } from './github-search-search-results-table-datasource';
 
 @Component({
@@ -25,7 +26,7 @@ export class GithubSearchSearchResultsComponent
 
   displayedColumns = ['avatarImg', 'login', 'type', 'htmlUrl'];
 
-  infoMessage!: InfoMessage | null;
+  infoMessage!: InfoMessage | undefined;
 
   constructor(public controller: GithubSearchController) {
     this.dataSource = new GithubSearchSearchResultsTableDataSource(controller);
@@ -64,23 +65,23 @@ export class GithubSearchSearchResultsComponent
     this.infoMessage = this.buildInfoCardMessage();
   }
 
-  buildInfoCardMessage(): InfoMessage | null {
+  buildInfoCardMessage(): InfoMessage | undefined {
     const filterState = this.controller.filterState$.value;
     const dataState = this.controller.dataState$.value;
 
     if (filterState.searchTerm === '') {
-      return InfoMessage.introduction();
+      return InfoMessage.find(InfoMessageType.INTRODUCTION);
     }
 
     if (dataState.hasError) {
-      return InfoMessage.searchError();
+      return InfoMessage.find(InfoMessageType.SEARCH_ERROR);
     }
 
     if (dataState.data.items.length === 0) {
-      return InfoMessage.noSearchResults();
+      return InfoMessage.find(InfoMessageType.NO_SEARCH_RESULTS);
     }
 
-    return null;
+    return undefined;
   }
 
   setDefaultSorting() {
