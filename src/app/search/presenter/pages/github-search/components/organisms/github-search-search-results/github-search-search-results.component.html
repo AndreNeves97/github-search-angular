@@ -1,9 +1,4 @@
-<div class="progress-bar-wrapper">
-  <mat-progress-bar
-    mode="indeterminate"
-    *ngIf="isLoading$ | async"
-  ></mat-progress-bar>
-</div>
+<app-progress-bar [isLoading]="isLoading$ | async"></app-progress-bar>
 
 <app-info-card
   [infoMessage]="infoMessage"

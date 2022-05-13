@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InfoCardComponent } from './presenter/pages/github-search/components/molecules/info-card/info-card.component';
 import { ResultsTableComponent } from './presenter/pages/github-search/components/molecules/results-table/results-table.component';
+import { ProgressBarComponent } from './presenter/pages/github-search/components/atoms/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ResultsTableComponent } from './presenter/pages/github-search/component
     GithubSearchSearchResultsComponent,
     InfoCardComponent,
     ResultsTableComponent,
+    ProgressBarComponent,
   ],
   providers: [
     GithubSearchController,
