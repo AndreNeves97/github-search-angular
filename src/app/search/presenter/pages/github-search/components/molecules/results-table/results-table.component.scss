@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@import "/src/theme.scss";
+
+$img-size: 36px;
+
+.table-container {
+  ::-webkit-scrollbar-track {
+    background: map-get($theme, "color", "background", "card");
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: map-get($theme, "color", "background", "background");
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: map-get($theme, "color", "background", "app-bar");
+  }
+
+  .table-wrapper {
+    position: relative;
+    overflow: auto;
+    border-radius: 4px 4px 0 0;
+
+    table {
+      width: 100%;
+
+      .avatar-wrapper {
+        display: flex;
+        align-items: center;
+
+        a {
+          width: $img-size;
+          height: $img-size;
+          margin: 14px 0;
+          margin-right: 14px;
+        }
+
+        img.avatar {
+          width: $img-size;
+          height: $img-size;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  mat-paginator {
+    border-radius: 0 0 4px 4px;
+  }
+}

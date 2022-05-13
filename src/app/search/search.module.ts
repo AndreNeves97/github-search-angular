@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InfoCardComponent } from './presenter/pages/github-search/components/molecules/info-card/info-card.component';
+import { ResultsTableComponent } from './presenter/pages/github-search/components/molecules/results-table/results-table.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { InfoCardComponent } from './presenter/pages/github-search/components/mo
     GithubSearchSearchBoxComponent,
     GithubSearchSearchResultsComponent,
     InfoCardComponent,
+    ResultsTableComponent,
   ],
   providers: [
     GithubSearchController,
