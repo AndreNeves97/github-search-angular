@@ -44,6 +44,11 @@ export class GithubSearchController {
     this.updateFilterState({ searchTerm });
   }
 
+  public setDefaultPage() {
+    const defaultViewState = GithubSearchViewState.default();
+    this.setPage(defaultViewState.page);
+  }
+
   public setPage(page: number) {
     this.updateViewState({ page });
   }
@@ -55,6 +60,8 @@ export class GithubSearchController {
       ...filterState,
       ...attributes,
     });
+
+    this.setDefaultPage();
   }
 
   private updateViewState(attributes: GithubSearchViewState | {}) {

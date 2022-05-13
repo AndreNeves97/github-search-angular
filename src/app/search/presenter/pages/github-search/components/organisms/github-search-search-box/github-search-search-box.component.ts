@@ -21,7 +21,6 @@ export class GithubSearchSearchBoxComponent implements AfterViewInit {
   }
 
   submit(): void {
-    this.controller.setPage(0);
     this.controller.setSearchTerm(this.searchTerm);
   }
 
