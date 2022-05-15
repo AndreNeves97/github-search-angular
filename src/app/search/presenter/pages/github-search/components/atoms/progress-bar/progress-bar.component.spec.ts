@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ProgressBarComponent } from './progress-bar.component';
 
@@ -12,6 +14,7 @@ describe('ProgressBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProgressBarComponent],
+      imports: [NoopAnimationsModule, MatProgressBarModule],
     }).compileComponents();
   });
 

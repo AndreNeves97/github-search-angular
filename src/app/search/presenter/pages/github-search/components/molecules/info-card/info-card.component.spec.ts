@@ -1,6 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoMessage } from '../../../models/info-message';
 import { InfoMessageType } from '../../../models/info-message-type';
 
@@ -14,6 +16,7 @@ describe('InfoCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InfoCardComponent],
+      imports: [NoopAnimationsModule, MatCardModule],
     }).compileComponents();
   });
 
