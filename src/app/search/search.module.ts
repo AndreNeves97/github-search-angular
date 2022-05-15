@@ -19,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -57,6 +58,7 @@ import { ProgressBarComponent } from './presenter/pages/github-search/components
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
