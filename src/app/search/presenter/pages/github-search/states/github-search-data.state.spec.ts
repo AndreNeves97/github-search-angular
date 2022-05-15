@@ -12,7 +12,7 @@ describe('GithubSearchDataState', () => {
   });
 
   it('should create an loading state instance', () => {
-    const state = GithubSearchDataState.loading();
+    const state = GithubSearchDataState.loading(GithubSearchResult.empty());
 
     expect(state).toEqual(
       jasmine.objectContaining({
@@ -22,7 +22,7 @@ describe('GithubSearchDataState', () => {
   });
 
   it('should create an error state instance', () => {
-    const state = GithubSearchDataState.error();
+    const state = GithubSearchDataState.error(GithubSearchResult.empty());
 
     expect(state).toEqual(
       jasmine.objectContaining({
@@ -33,14 +33,13 @@ describe('GithubSearchDataState', () => {
   });
 
   it('should create an success state instance', () => {
-    const data: GithubSearchResult = GithubSearchResult.empty();
-    const state = GithubSearchDataState.success(data);
+    const state = GithubSearchDataState.empty();
 
     expect(state).toEqual(
       jasmine.objectContaining({
         isLoading: false,
         hasError: false,
-        data: data,
+        data: GithubSearchResult.empty(),
       })
     );
   });

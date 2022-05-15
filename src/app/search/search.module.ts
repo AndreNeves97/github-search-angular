@@ -13,11 +13,29 @@ import { GithubSearchUsecase } from './domain/usecases/github-search.usecase';
 import { GithubSearchDatasource } from './infra/datasources/github-search-datasource.interface';
 import { GithubSearchDatasourceService } from './external/datasources/github-search-datasource.service';
 
+import { MatRippleModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InfoCardComponent } from './presenter/pages/github-search/components/molecules/info-card/info-card.component';
+import { ResultsTableComponent } from './presenter/pages/github-search/components/molecules/results-table/results-table.component';
+import { ProgressBarComponent } from './presenter/pages/github-search/components/atoms/progress-bar/progress-bar.component';
+
 @NgModule({
   declarations: [
     GithubSearchPageComponent,
     GithubSearchSearchBoxComponent,
     GithubSearchSearchResultsComponent,
+    InfoCardComponent,
+    ResultsTableComponent,
+    ProgressBarComponent,
   ],
   providers: [
     GithubSearchController,
@@ -31,6 +49,21 @@ import { GithubSearchDatasourceService } from './external/datasources/github-sea
       useClass: GithubSearchDatasourceService,
     },
   ],
-  imports: [CommonModule, FormsModule, SearchRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SearchRoutingModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatRippleModule,
+  ],
 })
 export class SearchModule {}

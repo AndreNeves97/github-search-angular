@@ -1,5 +1,8 @@
-<p>github-search-search-results works!</p>
+<app-progress-bar [isLoading]="isLoading$ | async"></app-progress-bar>
 
-<button *ngFor="let i of [1, 2, 3, 4, 5]" (click)="changePage(i)">
-  {{ i }}
-</button>
+<app-info-card
+  [infoMessage]="infoMessage"
+  (click)="onInfoCardClick()"
+></app-info-card>
+
+<app-results-table [class.hidden]="!!infoMessage"></app-results-table>

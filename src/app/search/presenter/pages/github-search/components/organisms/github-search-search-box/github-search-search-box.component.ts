@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatInput } from '@angular/material/input';
 import { GithubSearchController } from '../../../github-search.controller';
 
 @Component({
@@ -6,14 +7,24 @@ import { GithubSearchController } from '../../../github-search.controller';
   templateUrl: './github-search-search-box.component.html',
   styleUrls: ['./github-search-search-box.component.scss'],
 })
-export class GithubSearchSearchBoxComponent implements OnInit {
+export class GithubSearchSearchBoxComponent implements AfterViewInit {
+  @ViewChild(MatInput) searchInput!: MatInput;
+
   searchTerm: string = '';
 
   constructor(private controller: GithubSearchController) {}
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.controller.focusSearchInput$.subscribe(() => {
+      this.searchInput.focus();
+    });
+  }
 
   submit(): void {
     this.controller.setSearchTerm(this.searchTerm);
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
   }
 }

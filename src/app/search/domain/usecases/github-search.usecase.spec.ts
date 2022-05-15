@@ -68,6 +68,7 @@ describe('GithubSearchUsecase', () => {
     const returnValue: GithubSearchResult = GithubSearchResult.fromList([
       {
         avatarUrl: 'https://avatars.githubusercontent.com/u/16177771?v=4',
+        htmlUrl: 'https://github.com/AndreNeves97',
         login: 'AndreNeves97',
         type: 'User',
       },

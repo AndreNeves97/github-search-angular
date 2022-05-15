@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, debounceTime, skip, Subject } from 'rxjs';
+import { AppController } from 'src/app/app.controller';
 import { GithubSearchRequest } from 'src/app/search/domain/entities/github-search-request';
 import { GithubSearchResult } from 'src/app/search/domain/entities/github-search-result';
 import { GithubSearchUsecase } from 'src/app/search/domain/usecases/github-search.usecase';
@@ -12,10 +13,14 @@ export class GithubSearchController {
   public filterState$: BehaviorSubject<GithubSearchFilterState>;
   public viewState$: BehaviorSubject<GithubSearchViewState>;
   public dataState$: BehaviorSubject<GithubSearchDataState>;
+  public focusSearchInput$: Subject<void>;
 
   loadRequest$: Subject<void>;
 
-  constructor(private githubSearchUsecase: GithubSearchUsecase) {
+  constructor(
+    private githubSearchUsecase: GithubSearchUsecase,
+    private appController: AppController
+  ) {
     this.filterState$ = new BehaviorSubject<GithubSearchFilterState>(
       GithubSearchFilterState.default()
     );
@@ -25,8 +30,10 @@ export class GithubSearchController {
     );
 
     this.dataState$ = new BehaviorSubject<GithubSearchDataState>(
-      GithubSearchDataState.loading()
+      GithubSearchDataState.empty()
     );
+
+    this.focusSearchInput$ = new Subject();
 
     this.loadRequest$ = new Subject<void>();
 
@@ -35,6 +42,11 @@ export class GithubSearchController {
 
   public setSearchTerm(searchTerm: string) {
     this.updateFilterState({ searchTerm });
+  }
+
+  public setDefaultPage() {
+    const defaultViewState = GithubSearchViewState.default();
+    this.setPage(defaultViewState.page);
   }
 
   public setPage(page: number) {
@@ -48,6 +60,8 @@ export class GithubSearchController {
       ...filterState,
       ...attributes,
     });
+
+    this.setDefaultPage();
   }
 
   private updateViewState(attributes: GithubSearchViewState | {}) {
@@ -61,6 +75,7 @@ export class GithubSearchController {
 
   public load() {
     this.loadRequest$.next();
+    this.appController.scrollToTop$.next();
   }
 
   private listenStates() {

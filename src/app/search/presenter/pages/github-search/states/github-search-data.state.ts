@@ -3,7 +3,7 @@ import { GithubSearchResult } from 'src/app/search/domain/entities/github-search
 export class GithubSearchDataState {
   hasError: boolean;
   isLoading: boolean;
-  data!: GithubSearchResult | null;
+  data!: GithubSearchResult;
 
   constructor(hasError: boolean, isLoading: boolean, data: GithubSearchResult) {
     this.hasError = hasError;
@@ -11,9 +11,7 @@ export class GithubSearchDataState {
     this.data = data;
   }
 
-  public static loading(
-    data: GithubSearchResult | null = null
-  ): GithubSearchDataState {
+  public static loading(data: GithubSearchResult): GithubSearchDataState {
     return {
       hasError: false,
       isLoading: true,
@@ -21,9 +19,7 @@ export class GithubSearchDataState {
     };
   }
 
-  public static error(
-    data: GithubSearchResult | null = null
-  ): GithubSearchDataState {
+  public static error(data: GithubSearchResult): GithubSearchDataState {
     return {
       hasError: true,
       isLoading: false,
@@ -37,5 +33,10 @@ export class GithubSearchDataState {
       isLoading: false,
       data,
     };
+  }
+
+  public static empty(): GithubSearchDataState {
+    const data = GithubSearchResult.empty();
+    return GithubSearchDataState.success(data);
   }
 }

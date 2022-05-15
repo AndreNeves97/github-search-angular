@@ -18,16 +18,12 @@ export class GithubSearchDatasourceService implements GithubSearchDatasource {
 
     const params = {
       q: request.query,
-      page: request.page,
+      page: request.page + 1,
       per_page: request.perPage,
     };
 
     return this.apiService
       .get<any>('search/users', params)
-      .pipe(
-        map(
-          (result) => new GithubSearchResult(result.items, result.total_count)
-        )
-      );
+      .pipe(map((response) => GithubSearchResult.fromApiResponse(response)));
   }
 }

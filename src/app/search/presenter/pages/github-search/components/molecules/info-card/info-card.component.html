@@ -1,0 +1,7 @@
+<mat-card matRipple class="info-card mat-elevation-z6" *ngIf="infoMessage">
+  <ng-container>
+    <h2>{{ infoMessage.title }}</h2>
+    <h4>{{ infoMessage.message }}</h4>
+    <img [src]="infoMessage.img" />
+  </ng-container>
+</mat-card>

@@ -1,4 +1,33 @@
 <form>
-  <input type="text" name="searchTerm" [(ngModel)]="searchTerm" />
-  <button (click)="submit()">Search</button>
+  <mat-form-field appearance="fill">
+    <mat-label>Search users on GitHub</mat-label>
+    <input
+      matInput
+      type="text"
+      name="searchTerm"
+      placeholder="Login"
+      [(ngModel)]="searchTerm"
+    />
+
+    <button
+      *ngIf="searchTerm"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      type="button"
+      (click)="clearSearchTerm()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="submit-button"
+    (click)="submit()"
+  >
+    Submit
+  </button>
 </form>
