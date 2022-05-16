@@ -36,13 +36,24 @@ jobs:
       - run: npm run build
         if: github.event_name == 'push'
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy WebApp
+        uses: FirebaseExtended/action-hosting-deploy@v0
         if: github.event_name == 'push'
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GITHUB_SEARCH_F7F52 }}'
           channelId: live
           projectId: github-search-f7f52
+
+      - name: Deploy tests coverage result
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: github.event_name == 'push'
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GITHUB_SEARCH_F7F52 }}'
+          channelId: live
+          projectId: github-search-f7f52
+          target: github-search-tests-coverage
 
       - name: Upload dist files
         if: github.event_name == 'push'
@@ -52,7 +63,7 @@ jobs:
           path: dist/scalio-challenge
           retention-days: 1
 
-      - name: Upload coverage result
+      - name: Upload tests coverage result
         uses: actions/upload-artifact@v3
         with:
           name: coverage
