@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "github-search-f7f52"
+  },
+  "targets": {
+    "github-search-f7f52": {
+      "hosting": {
+        "github-search-f7f52": [
+          "github-search-f7f52"
+        ],
+        "github-search-tests-coverage": [
+          "github-search-tests-coverage"
+        ]
+      }
+    }
   }
 }

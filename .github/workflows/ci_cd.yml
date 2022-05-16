@@ -44,7 +44,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GITHUB_SEARCH_F7F52 }}'
           channelId: live
           projectId: 
-          target: scalio-github-search
+          target: github-search-f7f52
 
       - name: Deploy tests coverage result
         uses: FirebaseExtended/action-hosting-deploy@v0

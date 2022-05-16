@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "scalio-github-search",
+      "target": "github-search-f7f52",
       "public": "dist/scalio-challenge",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
