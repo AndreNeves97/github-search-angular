@@ -1,5 +1,7 @@
 # ScalioChallenge
 
+This repository has the "Web - Angular/ReactJS Test Assignment" for Scalio Hiring (https://www.notion.so/scalio/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186).
+
 This project is a web application that uses the [GitHub REST API](https://docs.github.com/en/rest) for [search users](https://docs.github.com/en/rest/users/users).
 
 
@@ -40,7 +42,7 @@ The **Clean Dart** proposes four layers for each application domain:
 <center>Clean Dart Architecture (Flutterando)</center>
 
 
-For this web application, the architecture was implemented based on diagram bellow:
+For this web application, the architecture was implemented based on diagram below:
 
 ![Application Architecture](./docs/images/application-architecture.png)
 
