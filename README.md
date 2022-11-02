@@ -55,7 +55,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ## Running unit tests
 
-Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io). The tests coverage can be found at `coverage/scalio-challenge/index.html` file.
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io). The tests coverage can be found at `coverage/github-search/index.html` file.
 
 
 

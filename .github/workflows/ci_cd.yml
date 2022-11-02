@@ -20,7 +20,7 @@ jobs:
         uses: AthleticNet/comment-test-coverage@1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: coverage/scalio-challenge/coverage-summary.json
+          path: coverage/github-search/coverage-summary.json
           title: Karma Test Coverage
 
       - name: Run e2e tests with Cypress 
@@ -61,12 +61,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: dist/scalio-challenge
+          path: dist/github-search
           retention-days: 1
 
       - name: Upload tests coverage result
         uses: actions/upload-artifact@v3
         with:
           name: coverage
-          path: coverage/scalio-challenge
+          path: coverage/github-search
           retention-days: 1

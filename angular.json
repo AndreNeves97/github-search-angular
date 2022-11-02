@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "scalio-challenge": {
+    "github-search": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/scalio-challenge",
+            "outputPath": "dist/github-search",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "scalio-challenge:build:production"
+              "browserTarget": "github-search:build:production"
             },
             "development": {
-              "browserTarget": "scalio-challenge:build:development"
+              "browserTarget": "github-search:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "scalio-challenge:build"
+            "browserTarget": "github-search:build"
           }
         },
         "test": {
@@ -98,11 +98,11 @@
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "scalio-challenge:serve"
+            "devServerTarget": "github-search:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "scalio-challenge:serve:production"
+              "devServerTarget": "github-search:serve:production"
             }
           }
         },
@@ -116,18 +116,18 @@
         "e2e": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "scalio-challenge:serve",
+            "devServerTarget": "github-search:serve",
             "watch": true,
             "headless": false
           },
           "configurations": {
             "production": {
-              "devServerTarget": "scalio-challenge:serve:production"
+              "devServerTarget": "github-search:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "scalio-challenge"
+  "defaultProject": "github-search"
 }

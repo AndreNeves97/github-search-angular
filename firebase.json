@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "github-search-f7f52",
-      "public": "dist/scalio-challenge",
+      "public": "dist/github-search",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -13,7 +13,7 @@
     },
     {
       "target": "github-search-tests-coverage",
-      "public": "coverage/scalio-challenge",
+      "public": "coverage/github-search",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
