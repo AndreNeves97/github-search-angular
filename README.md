@@ -1,6 +1,4 @@
-# ScalioChallenge
-
-This repository has the "Web - Angular/ReactJS Test Assignment" for Scalio Hiring (https://www.notion.so/scalio/Web-Angular-ReactJS-Test-Assignment-308d84eaa51c4f22b1f65d60efcd7186).
+# Github Search
 
 This project is a web application that uses the [GitHub REST API](https://docs.github.com/en/rest) for [search users](https://docs.github.com/en/rest/users/users).
 
