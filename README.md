@@ -3,15 +3,13 @@
 This project is a web application that uses the [GitHub REST API](https://docs.github.com/en/rest) for [search users](https://docs.github.com/en/rest/users/users).
 
 
-## Deliverables
+## See the project
 
 - Public WebApp URL: https://github-search-f7f52.web.app/
 - Tests coverage result: https://github-search-tests-coverage.web.app/
 
 
-## About challenge execution
-
-### Implementation aspects
+## Implementation aspects
 
 ### CI/CD configuration:
 
